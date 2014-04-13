@@ -5,7 +5,6 @@ var gulp     = require('gulp')
 , livereload = require('gulp-livereload')
 , uglify     = require('gulp-uglify');
 
-// Concatenate & Minify JS
 gulp.task('bundle', function() {
   return gulp.src('src/index.js')
   .pipe(plumber())
@@ -13,7 +12,6 @@ gulp.task('bundle', function() {
     debug: true,
     transform: ['browserify-shim', 'brfs']
   }))
-  // .pipe(uglify())
   .pipe(rename('bundle.js'))
   .pipe(gulp.dest('app/js'))
   .pipe(livereload());

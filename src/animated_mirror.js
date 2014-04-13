@@ -3,12 +3,14 @@ var applyStroke   = require('./apply_stroke')
   , getRandomInt  = require('./random_int')
   , webcamIntro   = document.querySelector('#webcam-intro')
   , webcamThanks  = document.querySelector('#webcam-thanks')
+  , bufferContext
+  , outputContext
 
 module.exports = function (video, buffer, output) {
   navigator.webkitGetUserMedia({ video : true }, function(_stream) {
 
-    var bufferContext = buffer.getContext('2d')
-      , outputContext = output.getContext('2d')
+    bufferContext = buffer.getContext('2d')
+    outputContext = output.getContext('2d')
 
     var brush = setInterval(function () {
       for (var i = 0; i < 100; i ++) {
@@ -22,16 +24,16 @@ module.exports = function (video, buffer, output) {
     setTimeout(function () {
       var webcamMessage = document.querySelector('#webcam-message')
       webcamMessage.className = 'webcam-message-container hidden'
-    }, 10000)
+    }, 5000)
     shutter()
   })
-}
 
-function shutter () {
-  setTimeout(function () {
-    closeShutter(video, buffer, bufferContext)
-    shutter()
-  }, getRandomInt(100, 250))
+  function shutter () {
+    setTimeout(function () {
+      closeShutter(video, buffer, bufferContext)
+      shutter()
+    }, getRandomInt(100, 250))
+  }
 }
 
 function closeShutter (vid, buf, ctx) {
