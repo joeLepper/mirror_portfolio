@@ -1,2 +1,1 @@
-
-This project uses gulp and browserify-shim to do its evil dirty work.
+So this is no longer a fork of the original repo. I'll be moving it into its own repositroy as soon as I can be bothered.
