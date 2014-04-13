@@ -1,3 +1,7 @@
+/* *
+ * thanks for stopping by!
+ * */
+
 var video          = document.querySelector('#mirror')
   , buffer         = document.querySelector('#frame-buffer')
   , output         = document.querySelector('#output')

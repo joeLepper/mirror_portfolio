@@ -3,25 +3,22 @@ var colorShift   = require('./color_shift')
   , coinFlip     = require('./coin_flip')
 
 module.exports = function applyStroke (oCtx, bCtx, bCan) {
-  var x = Math.floor(Math.random() * bCan.width)
-    , y = Math.floor(Math.random() * bCan.height)
 
-  var imgData = bCtx.getImageData(x, y, 1, 1)
-    , r = colorShift(imgData.data[0])
-    , g = imgData.data[1]
-    , b = colorShift(imgData.data[2])
-    , a = getRandomInt(0,10) / 11
+  var imgData     = bCtx.getImageData(x, y, 1, 1)
+    , points      = []
+    , x           = Math.floor(Math.random() * bCan.width)
+    , y           = Math.floor(Math.random() * bCan.height)
+    , r           = colorShift(imgData.data[0])
+    , g           = imgData.data[1]
+    , b           = colorShift(imgData.data[2])
+    , a           = getRandomInt(0,10) / 11
+    , colorString = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ');'
 
-  var points = []
   coinFlip() ? drawLittleDot() : drawBigDot()
-
   oCtx.lineJoin = oCtx.lineCap = 'round'
-  var colorString = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ');'
-
   oCtx.fillStyle = colorString
 
   for (var i = 0; i < points.length; i++) {
-
     oCtx.beginPath()
     oCtx.globalAlpha = points[i].opacity
     oCtx.arc(
