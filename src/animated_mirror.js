@@ -13,7 +13,7 @@ module.exports = function (video, buffer, output) {
     outputContext = output.getContext('2d')
 
     var brush = setInterval(function () {
-      for (var i = 0; i < 100; i ++) {
+      for (var i = 0; i < 5000; i ++) {
         applyStroke(outputContext, bufferContext, buffer)
       }
     }, 0)
@@ -32,7 +32,7 @@ module.exports = function (video, buffer, output) {
     setTimeout(function () {
       closeShutter(video, buffer, bufferContext)
       shutter()
-    }, getRandomInt(100, 150))
+    }, getRandomInt(100, 1000))
   }
 }
 
