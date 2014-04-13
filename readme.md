@@ -1,1 +1,8 @@
-So this is no longer a fork of the original repo. I'll be moving it into its own repositroy as soon as I can be bothered.
+# Animated Mirror
+
+A simple portfolio layout that features a filtered webcam creating a "painted" effect.
+
+## Running
+
+* clone the repo
+* `node index.js`

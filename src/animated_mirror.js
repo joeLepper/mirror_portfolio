@@ -32,7 +32,7 @@ module.exports = function (video, buffer, output) {
     setTimeout(function () {
       closeShutter(video, buffer, bufferContext)
       shutter()
-    }, getRandomInt(100, 250))
+    }, getRandomInt(100, 150))
   }
 }
 
