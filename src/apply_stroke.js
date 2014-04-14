@@ -4,13 +4,13 @@ var colorShift   = require('./color_shift')
 
 module.exports = function applyStroke (oCtx, bCtx, bCan) {
 
-  var imgData     = bCtx.getImageData(x, y, 1, 1)
-    , points      = []
+  var points      = []
     , x           = Math.floor(Math.random() * bCan.width)
     , y           = Math.floor(Math.random() * bCan.height)
-    , r           = colorShift(imgData.data[0])
+    , imgData     = bCtx.getImageData(x, y, 1, 1)
+    , r           = colorShift(imgData.data[0], [15, 75])
     , g           = imgData.data[1]
-    , b           = colorShift(imgData.data[2])
+    , b           = colorShift(imgData.data[2], [25, 30])
     , a           = getRandomInt(0,10) / 11
     , colorString = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ');'
 

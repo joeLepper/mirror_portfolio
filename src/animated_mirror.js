@@ -12,12 +12,6 @@ module.exports = function (video, buffer, output) {
     bufferContext = buffer.getContext('2d')
     outputContext = output.getContext('2d')
 
-    var brush = setInterval(function () {
-      for (var i = 0; i < 5000; i ++) {
-        applyStroke(outputContext, bufferContext, buffer)
-      }
-    }, 0)
-
     document.querySelector('#mirror').setAttribute('src', window.URL.createObjectURL(_stream))
     webcamIntro.className = 'webcam-text hidden'
     webcamThanks.className = 'webcam-text'
@@ -26,6 +20,7 @@ module.exports = function (video, buffer, output) {
       webcamMessage.className = 'webcam-message-container hidden'
     }, 5000)
     shutter()
+    requestAnimationFrame(brush)
   })
 
   function shutter () {
@@ -33,6 +28,13 @@ module.exports = function (video, buffer, output) {
       closeShutter(video, buffer, bufferContext)
       shutter()
     }, getRandomInt(100, 1000))
+  }
+
+  function brush () {
+    for (var i = 0; i < 5000; i ++) {
+      applyStroke(outputContext, bufferContext, buffer)
+    }
+    requestAnimationFrame(brush)
   }
 }
 
