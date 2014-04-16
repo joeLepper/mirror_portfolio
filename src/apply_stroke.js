@@ -8,9 +8,9 @@ module.exports = function applyStroke (oCtx, bCtx, bCan) {
     , x           = Math.floor(Math.random() * bCan.width)
     , y           = Math.floor(Math.random() * bCan.height)
     , imgData     = bCtx.getImageData(x, y, 1, 1)
-    , r           = colorShift(imgData.data[0], [15, 75])
+    , r           = colorShift(imgData.data[0], [5, 75])
     , g           = imgData.data[1]
-    , b           = colorShift(imgData.data[2], [25, 30])
+    , b           = colorShift(imgData.data[2], [5, 75])
     , a           = getRandomInt(0,10) / 11
     , colorString = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ');'
 

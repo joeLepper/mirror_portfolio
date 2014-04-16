@@ -3,7 +3,7 @@ var gulp       = require('gulp')
   , plumber    = require('gulp-plumber')
   , rename     = require('gulp-rename')
 
-gulp.task('bundle', function() {
+gulp.task('bundle', function () {
   return gulp.src('src/index.js')
   .pipe(plumber())
   .pipe(browserify({
@@ -14,10 +14,22 @@ gulp.task('bundle', function() {
   .pipe(gulp.dest('app/js'))
 });
 
+gulp.task('mirror', function () {
+  return gulp.src('src/mirror.js')
+  .pipe(plumber())
+  .pipe(browserify({
+    debug: true,
+    transform: ['brfs']
+  }))
+  .pipe(rename('mirror.js'))
+  .pipe(gulp.dest('app/js'))
+})
+
 // Watch Files For Changes
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.js', ['bundle'])
+  gulp.watch('src/**/*.js', ['bundle', 'mirror'])
+
 })
 
 //default task
-gulp.task('default', ['bundle', 'watch'])
+gulp.task('default', ['bundle', 'mirror', 'watch'])
