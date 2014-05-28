@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>animated mirror</title>
+    <meta charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="magic-mirror">
+
+      <video id="mirror" class="mirror hidden" autoplay></video>
+      <canvas id="frame-buffer" class="frame-buffer hidden"></canvas>
+      <canvas id="output" class="output"></canvas>
+      <canvas id="gifulator" class="gifulator"></canvas>
+
+    </div>
+
+    <div class="controls">
+
+      <div class="sliders">
+
+        <div class="color_slider">
+
+          <input type="range" value="5" min="0" max="255"></input>
+          <label class="color_value">5</label>
+          <label class="color_label">red</label>
+
+        </div>
+
+        <div class="color_slider">
+
+          <input type="range" value="5" min="0" max="255"></input>
+          <label class="color_value">5</label>
+          <label class="color_label">green</label>
+
+
+        </div>
+
+        <div class="color_slider">
+
+          <input type="range" value="5" min="0" max="255"></input>
+          <label class="color_value">5</label>
+          <label class="color_label">blue</label>
+
+
+        </div>
+
+      </div>
+
+      <input type="email" class="email"></input>
+      <button class="button" id="gifulate">email a gif</button>
+
+    </div>
+
+    <script src="http://localhost:35729/livereload.js"></script>
+    <script src="js/b64.js"></script>
+    <script src="js/GIFEncoder.js"></script>
+    <script src="js/LZWEncoder.js"></script>
+    <sctipt src="js/NeuQuant.js"></script>
+    <script src="js/mirror.js"></script>
+
+  </body>
+
+</html>
