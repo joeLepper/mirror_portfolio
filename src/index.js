@@ -1,20 +1,13 @@
-var animatedMirror = require('./animated_mirror')
-  , video          = document.querySelector('#mirror')
-  , buffer         = document.querySelector('#frame-buffer')
-  , output         = document.querySelector('#output')
-  , webcamIntro    = document.querySelector('#webcam-intro')
-  , webcamThanks   = document.querySelector('#webcam-thanks')
+var output = document.querySelector('#output')
+  , oCtx   = output.getContext('2d')
 
-var mirror = animatedMirror(video, buffer, output);
+socket = io.connect('http://localhost:8080')
 
-console.log(mirror)
-
-mirror.on('connect', function () {
-  console.log('event!')
-  webcamIntro.className  = 'webcam-text hidden'
-  webcamThanks.className = 'webcam-text'
-  setTimeout(function () {
-    var webcamMessage = document.querySelector('#webcam-message')
-    webcamMessage.className = 'webcam-message-container hidden'
-  }, 5000)
+socket.on('pixel', function (p) {
+  oCtx.lineJoin = oCtx.lineCap = 'round'
+  oCtx.fillStyle = 'rgba(' + p.r + ',' + p.g + ',' + p.b + ',' + p.a + ');'
+  oCtx.beginPath()
+  oCtx.globalAlpha = p.o
+  oCtx.arc(p.x, p.y, p.ra, false, Math.PI * 2, false)
+  oCtx.fill()
 })

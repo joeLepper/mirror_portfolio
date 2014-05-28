@@ -9,8 +9,13 @@ canvas {
   width: 1280px;
   height: 960px;
   margin: 0px;
-}
+/*  display: none;
+*/}
 
+/*#gifulator {
+  display: block;
+}
+*/
 ul {
   margin: 0;
   margin-top:15px;
@@ -40,9 +45,70 @@ a {
   font-size:
 }
 
+label {
+  color: white;
+}
+
+input[type="email"] {
+  background-color: hsla(0, 0%, 75%, .7);
+  margin-top:20px;
+}
+
+.email {
+  width:124px;
+  margin-bottom: 15px;
+}
+
 a:hover {
   text-decoration: underline;
   color: #3696be;
+}
+
+
+.button {
+ width:130px;
+ margin-bottom: 20px;
+ color: hsla(0, 50%, 97%, .7);
+ background-color: hsla(0,50%,5%,.2);
+ border-color: white;
+ border-color: hsla(0,50%,95%,.4);
+ border-style: solid;
+ border-width: 1px;
+ font-family: 'Droid Sans';
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: hsla(0,50%,50%,.2);
+}
+
+.sliders {
+  margin-top:15px;
+  margin-bottom:15px;
+  padding-bottom:10px;
+}
+
+.controls {
+  z-index: 999;
+  position: relative;
+  display: inline-block;
+  width: 144px;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  padding-left: 10px;
+  margin-left:5px;
+  margin-top:15px;
+}
+
+.color_slider {
+  margin-top: 8px;
+  float: left;
+}
+
+.color_label {
+  float: right;
+  margin-right: 20px;
+  font-family: 'Droid Sans';
+  font-size: 12px;
 }
 
 .text-container {

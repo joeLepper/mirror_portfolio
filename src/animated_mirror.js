@@ -12,12 +12,15 @@ module.exports = function mirror (video, buffer, output) {
     navigator.webkitGetUserMedia({ video : true }, function(_stream) {
       bufferContext = buffer.getContext('2d')
       outputContext = output.getContext('2d')
-      console.log(initMirror)
       self.emit('connect')
       video.setAttribute('src', window.URL.createObjectURL(_stream))
       shutter()
       requestAnimationFrame(brush)
-    })
+    }, handleError)
+
+    function handleError (e) {
+      console.error(e)
+    }
 
     function shutter () {
       setTimeout(function () {
@@ -27,9 +30,7 @@ module.exports = function mirror (video, buffer, output) {
     }
 
     function brush () {
-      for (var i = 0; i < 5000; i ++) {
-        applyStroke(outputContext, bufferContext, buffer)
-      }
+      applyStroke(outputContext, bufferContext, buffer, self)
       requestAnimationFrame(brush)
     }
   }
@@ -49,3 +50,5 @@ function closeShutter (vid, buf, ctx) {
                , buf.height
                )
 }
+
+
