@@ -14,7 +14,7 @@
     "gulp-util": "~2.2.14",
     "js-yaml": "^3.2.1",
     "needle": "^0.7.1",
-    "nodemailer": "^1.2.1",
+    "nodemailer": "~0.7.1",
     "socket.io": "^0.9.16",
     "socket.io-client": "^0.9.16"
   },
