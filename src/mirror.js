@@ -10,12 +10,25 @@ var animatedMirror = require('./animated_mirror')
 
   , safetyValve = 0
 
-var gifButton = document.querySelector('#gifulate')
+if (location.pathname === '/control_mirror') {
+  var gifButton = document.querySelector('#gifulate')
 
-gifButton.addEventListener('click', function () {
-  console.log('click event!')
-  gifulate(video, document.querySelector('#gifulator'), output)
+  gifButton.addEventListener('click', function () {
+    console.log('click event!')
+    gifulate(video, document.querySelector('#gifulator'), output)
+  })
+  controls()
+} else if (location.pathname === '/') {
+  mirror.on('connect', function () {
+  console.log('event!')
+  webcamIntro.className  = 'webcam-text hidden'
+  webcamThanks.className = 'webcam-text'
+  setTimeout(function () {
+    var webcamMessage = document.querySelector('#webcam-message')
+    webcamMessage.className = 'webcam-message-container hidden'
+  }, 5000)
 })
+}
 
 mirror.on('data', function (event) {
   if (!safetyValve) {
@@ -24,5 +37,3 @@ mirror.on('data', function (event) {
     safetyValve = 1
   }
 })
-
-controls()
