@@ -4,9 +4,9 @@
 
     <title>animated mirror</title>
     <meta charset="utf-8">
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <!--link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'-->
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <!--link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'-->
     <link href="css/style.css" type="text/css" rel="stylesheet">
 
   </head>
@@ -18,7 +18,8 @@
       <video id="mirror" class="mirror hidden" autoplay></video>
       <canvas id="frame-buffer" class="frame-buffer hidden"></canvas>
       <canvas id="output" class="output"></canvas>
-      <canvas id="gifulator" class="gifulator"></canvas>
+      <canvas id="gifulator" class="gifulator hidden"></canvas>
+      <img class="gif-holder"/>
 
     </div>
 
@@ -60,10 +61,11 @@
     </div>
 
     <script src="http://localhost:35729/livereload.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/b64.js"></script>
-    <script src="js/GIFEncoder.js"></script>
+    <script src="js/NeuQuant.js"></script>
     <script src="js/LZWEncoder.js"></script>
-    <sctipt src="js/NeuQuant.js"></script>
+    <script src="js/GIFEncoder.js"></script>
     <script src="js/mirror.js"></script>
 
   </body>

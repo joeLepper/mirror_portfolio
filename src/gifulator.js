@@ -3,34 +3,29 @@ module.exports = function dynamicSelfie (video, canvas, mirror) {
     , ctx     = canvas.getContext('2d')
     , frame   = 0
     , clock
+    , videoWidth  = video.videoWidth
+    , videoHeight = video.videoHeight
+    , totalFrames = 40
+    , binaryGif
 
-  window.encoder = encoder
-
-  console.log(ctx)
-  console.log(window)
+  canvas.height = 150
+  canvas.width  = 300
 
   encoder.setRepeat(0)
   encoder.setDelay(100)
   encoder.start()
 
-  console.log('gif!')
-
   clock = setInterval(function () {
-    console.log('snap')
-    var videoWidth  = video.videoWidth
-      , videoHeight = video.videoHeight
-      , totalFrames = 20
-      , binaryGif
+    console.log('shutter')
 
     if (frame >= totalFrames) {
       encoder.finish()
       binaryGif = encoder.stream().getData()
-      console.log(binaryGif)
+      uploadSelfie(encode64(binaryGif))
       clearInterval(clock)
     }
     else {
-      console.log(mirror, videoWidth, videoHeight)
-      ctx.drawImage(mirror, 0, 0, videoWidth, videoHeight, 0, 0, videoWidth / 3, videoHeight / 3)
+      ctx.drawImage(mirror, 0, 0, videoWidth, videoHeight, 0, 0, videoWidth, videoHeight)
       encoder.addFrame(ctx)
       frame++
     }
@@ -38,22 +33,32 @@ module.exports = function dynamicSelfie (video, canvas, mirror) {
 }
 
 function uploadSelfie (imageData) {
-  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
-  }
-  xmlhttp.onreadystatechange=function () {
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      console.log(xmlhttp.responseText)
-    }
-    else if (xmlhttp.status === 400) {
-      console.log(xmlhttp)
-    }
-  }
+  console.log('initiating upload')
+  $.ajax({
+    url  : 'https://api.imgur.com/3/upload',
+    type : 'POST',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Authorization', 'Client-ID e650e0d2a9e1d2e');
+    },
+    data: {
+      type  : 'base64',
+      image : imageData
+    },
+    dataType : 'json',
+    success  : function (res) {
+      console.log('successful upload')
+      console.log('initiating email')
+      console.log(res.data.link)
+      $.post('/email', { email : $('.email').val(), link : res.data.link})
+    },
+    error    : function (err) { console.error(err) }
+  });
 
-  console.log(imageData)
+}
 
-  xmlhttp.open('POST', 'https://api.imgur.com/3/upload', true);
-  xmlhttp.setRequestHeader('Authorization', 'Client-ID e650e0d2a9e1d2e')
-  xmlhttp.send('type=base64&image=' + imageData);
+function showGif (imageData) {
+  var dataUrl = 'data:image/gif;base64,'+ imageData
+    , img     = document.querySelector('.gif-holder')
 
+  img.src = dataUrl
 }

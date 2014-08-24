@@ -1,19 +1,31 @@
 body {
   font-family: Monospace;
   background-color: #000;
-  margin: 0px;
+  margin: 0;
   overflow: hidden;
 }
 
 canvas {
   width: 1280px;
   height: 960px;
-  margin: 0px;
+  margin: 0;
 /*  display: none;
 */}
 
-/*#gifulator {
+/*.gif-holder {
   display: block;
+  position: absolute;
+  top:0;
+  left:200px;
+}
+
+#gifulator {
+  display: block;
+  position: absolute;
+  top:0;
+  left:200px;
+  height: 480px;
+  width: 640px;
 }
 */
 ul {

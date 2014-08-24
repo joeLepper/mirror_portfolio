@@ -4,18 +4,18 @@
   "description": "minimalist portolio site",
   "main": "index.js",
   "dependencies": {
+    "brfs": "~1.0.1",
+    "browserify": "~3.33.1",
     "express": "~3.5.1",
     "gulp": "~3.5.6",
-    "browserify": "~3.33.1",
-    "brfs": "~1.0.1",
-    "gulp-rename": "~1.2.0",
     "gulp-browserify": "~0.5.0",
-    "gulp-util": "~2.2.14",
     "gulp-plumber": "~0.5.6",
-    "js-yaml": "^3.0.2",
+    "gulp-rename": "~1.2.0",
+    "gulp-util": "~2.2.14",
+    "js-yaml": "^3.2.1",
+    "needle": "^0.7.1",
     "socket.io": "^0.9.16",
-    "socket.io-client": "^0.9.16",
-    "needle": "^0.7.1"
+    "socket.io-client": "^0.9.16"
   },
   "devDependencies": {
     "gulp-livereload": "^1.5.0",

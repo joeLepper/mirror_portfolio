@@ -6,14 +6,12 @@ module.exports = function () {
     if (inputs[i].type === 'range')
     bindEvent(inputs[i], i)
   }
-
-  console.log('Hello, World!')
-  console.log(inputs)
 }
 
 function bindEvent (element, i) {
 
   element.addEventListener('change', function (e) {
+    console.log(e)
     e.target.nextElementSibling.textContent = e.target.value
     colors.set(e.target.value, i)
   })

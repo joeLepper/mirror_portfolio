@@ -8,13 +8,21 @@ var animatedMirror = require('./animated_mirror')
   , gifulate       = require('./gifulator')
   , controls       = require('./controls')
 
-
+  , safetyValve = 0
 
 var gifButton = document.querySelector('#gifulate')
 
 gifButton.addEventListener('click', function () {
-  console.log('foo')
+  console.log('click event!')
   gifulate(video, document.querySelector('#gifulator'), output)
+})
+
+mirror.on('data', function (event) {
+  if (!safetyValve) {
+
+    window.evt = event
+    safetyValve = 1
+  }
 })
 
 controls()
