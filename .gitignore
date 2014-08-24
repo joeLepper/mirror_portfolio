@@ -1,3 +1,5 @@
 node_modules
 bower_components
-/app/js/*
+/app/js/bundle.js
+/app/js/mirror.js
+/app/js/client.js
